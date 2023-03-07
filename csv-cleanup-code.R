@@ -17,8 +17,8 @@ timestamp_data <- read_csv(timestamp_data_path) %>%
   as.data.frame()
 
 #removes any NA/#VALUE! cells from data frame and reads values as numeric variables
-timestamp_data_clean<- timestamp_data[!timestamp_data$endtime=="#VALUE!",]
-timestamp_data_clean$endtime <- as.numeric(as.character(timestamp_data_clean$endtime))
+timestamp_data_clean<- timestamp_data[!timestamp_data$endtime=="NA",]
+#timestamp_data_clean$endtime <- as.numeric(as.character(timestamp_data_clean$endtime))
 
 #timing how long process takes 
 system.time({
@@ -50,5 +50,4 @@ system.time({
     write.csv(clean_csv, clean_path)
   })
 })
-
 
