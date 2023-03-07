@@ -5,9 +5,9 @@ library(tidyverse)
 library(readr)
 
 #Paths: change these as needed 
-raw_csv_path <- "/users/manvisethi/FIT/csvdata/"
-clean_csv_path <- "/users/manvisethi/FIT/cleancsvs"
-timestamp_data_path <- "/users/manvisethi/FIT/TimestampDataFinal.csv"
+raw_csv_path <- "/data/netapp02/work/Manvi_Sethi/FIT/raw_csvs/"
+clean_csv_path <- "/data/netapp02/work/Manvi_Sethi/FIT/clap_trimmed_csvs/"
+timestamp_data_path <- "/data/netapp02/work/Manvi_Sethi/FIT/TimestampDataFinal.csv"
 
 # Creates a vector of CSV filenames to be processed 
 csvs <- list.files(path = raw_csv_path)
@@ -42,14 +42,13 @@ system.time({
       as.data.frame()
     
     #trimming CSV
-    clean_csv<- subset(raw_csv, timestamp >= ct & timestamp <= et) 
+    clean_csv<- subset(raw_csv, timestamp >= ct) 
     
     #Clean path - change this according to where clean CSVs should be going 
-    clean_path <- file.path(clean_csv_path, paste(F, "_clean.csv", sep = ""))
+    clean_path <- file.path(clean_csv_path, paste(F, "_cltr.csv", sep = ""))
     
     write.csv(clean_csv, clean_path)
   })
 })
-
 
 
