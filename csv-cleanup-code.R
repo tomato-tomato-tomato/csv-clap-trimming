@@ -7,7 +7,7 @@ library(readr)
 #Paths: change these as needed 
 raw_csv_path <- "/data/netapp02/work/Manvi_Sethi/FIT/raw_csvs/"
 clean_csv_path <- "/data/netapp02/work/Manvi_Sethi/FIT/clap_trimmed_csvs/"
-timestamp_data_path <- "/data/netapp02/work/Manvi_Sethi/FIT/TimestampDataFinal.csv"
+timestamp_data_path <- "/data/netapp02/work/Manvi_Sethi/FIT/timestamp_data.csv"
 
 # Creates a vector of CSV filenames to be processed 
 csvs <- list.files(path = raw_csv_path)
