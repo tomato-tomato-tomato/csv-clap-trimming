@@ -4,9 +4,11 @@
 library(tidyverse)
 library(readr)
 
-#Paths: change these as needed 
+#Path to where raw csv files (OpenFace output) are stored 
 raw_csv_path <- "/data/netapp02/work/Manvi_Sethi/FIT/raw_csvs/"
+#Path to where you want trimmed CSVs to go 
 clean_csv_path <- "/data/netapp02/work/Manvi_Sethi/FIT/clap_trimmed_csvs/"
+#Where to find the timestamp data file 
 timestamp_data_path <- "/data/netapp02/work/Manvi_Sethi/FIT/timestamp_data.csv"
 
 # Creates a vector of CSV filenames to be processed 
@@ -23,7 +25,7 @@ timestamp_data_clean<- timestamp_data[!timestamp_data$endtime=="NA",]
 #timing how long process takes 
 system.time({
   
-  #loop begins here, make sure to change number depending on how many CSVs are being edited 
+  #loop begins here
   lapply(csvs, function(csv){
     #removing .csv from string of CSV file names earlier created 
     F <- str_remove(csv, ".csv")
@@ -37,11 +39,11 @@ system.time({
     #retrieving end time from timestamp CSV 
     et <- timestamp_data_clean[L, "endtime"]
     
-    #reading in raw CSV 
+    #reading in raw CSVs
     raw_csv <- read_csv(file.path(raw_csv_path, csv)) %>% 
       as.data.frame()
     
-    #trimming CSV
+    #trimming CSVs
     clean_csv<- subset(raw_csv, timestamp >= ct) 
     
     #Clean path - change this according to where clean CSVs should be going 
